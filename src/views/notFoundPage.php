@@ -11,7 +11,7 @@ $pageContent = <<<HTML
             <div class="center-content">
                 <section>
                     <h1>Error !</h1>
-                    <p><a href="/">The page your are request not exit. Please, <strong>return to the homepage.</strong></a></p>
+                    <p><a href="/">The page that your are request not exit. Please, <strong>return to the homepage.</strong></a></p>
                 </section>
             </div>
         </article>
