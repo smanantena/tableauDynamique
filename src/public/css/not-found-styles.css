@@ -1,0 +1,14 @@
+@charset 'utf-8';
+
+h1 {
+    text-transform: uppercase;
+    margin-bottom: 0;
+    margin-top: 3rem;
+    text-align: center;
+    color: rgb(247, 54, 54);
+    font-size: 3rem;
+}
+
+a:link, a:visited {
+    color: black;
+}

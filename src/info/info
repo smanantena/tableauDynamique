@@ -1,0 +1,78 @@
+    case '/products-page?page=2':
+        require_once dirname(__DIR__) . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR . 'productsViews' . DIRECTORY_SEPARATOR . 'productsViewsPage.php';
+        break;
+    case '/products-page?page=3':
+        require_once dirname(__DIR__) . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR . 'productsViews' . DIRECTORY_SEPARATOR . 'productsViewsPage.php';
+        break;
+    case '/products-page?page=4':
+        require_once dirname(__DIR__) . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR . 'productsViews' . DIRECTORY_SEPARATOR . 'productsViewsPage.php';
+        break;
+    case '/products-page?page=5':
+        require_once dirname(__DIR__) . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR . 'productsViews' . DIRECTORY_SEPARATOR . 'productsViewsPage.php';
+        break;
+    case '/products-page?page=6':
+        require_once dirname(__DIR__) . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR . 'productsViews' . DIRECTORY_SEPARATOR . 'productsViewsPage.php';
+        break;
+    case '/products-page?page=7':
+        require_once dirname(__DIR__) . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR . 'productsViews' . DIRECTORY_SEPARATOR . 'productsViewsPage.php';
+        break;
+    case '/products-page?page=8':
+        require_once dirname(__DIR__) . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR . 'productsViews' . DIRECTORY_SEPARATOR . 'productsViewsPage.php';
+        break;
+    case '/products-page?page=9':
+        require_once dirname(__DIR__) . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR . 'productsViews' . DIRECTORY_SEPARATOR . 'productsViewsPage.php';
+        break;
+    case '/products-page?page=10':
+        require_once dirname(__DIR__) . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR . 'productsViews' . DIRECTORY_SEPARATOR . 'productsViewsPage.php';
+        break;
+    case '/products-page?page=11':
+        require_once dirname(__DIR__) . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR . 'productsViews' . DIRECTORY_SEPARATOR . 'productsViewsPage.php';
+        break;
+    case '/products-page?page=12':
+        require_once dirname(__DIR__) . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR . 'productsViews' . DIRECTORY_SEPARATOR . 'productsViewsPage.php';
+        break;
+    case '/products-page?page=13':
+        require_once dirname(__DIR__) . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR . 'productsViews' . DIRECTORY_SEPARATOR . 'productsViewsPage.php';
+        break;
+    case '/products-page?page=14':
+        require_once dirname(__DIR__) . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR . 'productsViews' . DIRECTORY_SEPARATOR . 'productsViewsPage.php';
+        break;
+    case '/products-page?page=15':
+        require_once dirname(__DIR__) . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR . 'productsViews' . DIRECTORY_SEPARATOR . 'productsViewsPage.php';
+        break;
+    case '/products-page?page=16':
+        require_once dirname(__DIR__) . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR . 'productsViews' . DIRECTORY_SEPARATOR . 'productsViewsPage.php';
+        break;
+    case '/products-page?page=17':
+        require_once dirname(__DIR__) . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR . 'productsViews' . DIRECTORY_SEPARATOR . 'productsViewsPage.php';
+        break;
+    case '/products-page?page=18':
+        require_once dirname(__DIR__) . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR . 'productsViews' . DIRECTORY_SEPARATOR . 'productsViewsPage.php';
+        break;
+    case '/products-page?page=19':
+        require_once dirname(__DIR__) . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR . 'productsViews' . DIRECTORY_SEPARATOR . 'productsViewsPage.php';
+        break;
+    case '/products-page?page=20':
+        require_once dirname(__DIR__) . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR . 'productsViews' . DIRECTORY_SEPARATOR . 'productsViewsPage.php';
+        break;
+    case '/products-page?page=21':
+        require_once dirname(__DIR__) . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR . 'productsViews' . DIRECTORY_SEPARATOR . 'productsViewsPage.php';
+        break;
+    case '/products-page?page=22':
+        require_once dirname(__DIR__) . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR . 'productsViews' . DIRECTORY_SEPARATOR . 'productsViewsPage.php';
+        break;
+    case '/products-page?page=23':
+        require_once dirname(__DIR__) . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR . 'productsViews' . DIRECTORY_SEPARATOR . 'productsViewsPage.php';
+        break;
+    case '/products-page?page=24':
+        require_once dirname(__DIR__) . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR . 'productsViews' . DIRECTORY_SEPARATOR . 'productsViewsPage.php';
+        break;
+    case '/products-page?page=25':
+        require_once dirname(__DIR__) . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR . 'productsViews' . DIRECTORY_SEPARATOR . 'productsViewsPage.php';
+        break;
+    case '/products-page?page=26':
+        require_once dirname(__DIR__) . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR . 'productsViews' . DIRECTORY_SEPARATOR . 'productsViewsPage.php';
+        break;
+    case '/products-page?page=27':
+        require_once dirname(__DIR__) . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR . 'productsViews' . DIRECTORY_SEPARATOR . 'productsViewsPage.php';
+        break;
