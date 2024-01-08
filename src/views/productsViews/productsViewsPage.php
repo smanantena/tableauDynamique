@@ -3,19 +3,42 @@
 use App\Database\Queries\AllProducts;
 use App\Database\Queries\AllProductsSortedByIdLimit;
 
-session_start();
 try {
-    if (isset($_POST['keywords']) || isset($_SESSION['keywords'])) {
-        if (isset($_POST['keywords'])) {
-            $_SESSION['keywords'] =  htmlentities($_POST['keywords']);
-        }
-        $keywords = $_SESSION['keywords'];
-        $products = AllProducts::productsSearch($keywords);
-        $productsNumber = (is_array($products)) ? count($products) : 0 ;
-    } else {
-        $products = AllProductsSortedByIdLimit::execute();
-        $productsNumber = AllProducts::numberOfProducts();
+    $keywords = null;
+    $pageNumber = 1;
+    $limit = AllProducts::LIMIT_OF_PRODUCT_REGISTER;
+    $offset = 0;
+    
+    $sort = 'id';
+    $direction = 'asc';
+    
+    if (isset($_GET['keywords'])) {
+        $keywords = htmlentities($_GET['keywords']);
     }
+
+    if (isset($_GET['page'])) {
+        if (is_int(intval(htmlentities($_GET['page'])))) {
+            $pageNumber = intval(htmlentities($_GET['page']));
+        }
+    }
+
+    
+
+    if (isset($_GET['sort'])) {
+        $sort = htmlentities($_GET['sort']);
+    }
+
+    if (isset($_GET['dir'])) {
+        $direction = htmlentities($_GET['dir']);
+    }
+
+    $products = AllProducts::products(null, null, $keywords);
+    $productsNumber = ( is_array($products) ) ? count( $products ) : 0 ;
+    $offset = ( (($pageNumber - 1) * 20) < $productsNumber ) ? (($pageNumber - 1) * 20) : 0 ;
+    
+    $products = AllProducts::products($limit, $offset, $keywords, $sort, $direction);
+    
+   
 
 } catch (Exception $e) {
 
@@ -24,15 +47,19 @@ try {
 if (isset($products)) {
     if (is_array($products) && count($products)) {
         
-        $pageTitle = 'Products sorted by id';
+        $pageTitle = 'Products list';
         ob_start();
         echo "<main>";
         echo '<div class="container">';
         echo '<article>';
         echo '<h1>Products</h1>';
-        echo '<form method="post">';
+        echo '<form method="get">';
+        echo '<input type="hidden" name="page" value="1">';
         echo '<input class="form-controls" type="text" name="keywords" id="keywords" placeholder="Keywords that you search." value="' . ($keywords ?? '') . '">';
         echo '<button class="btn form-controls" type="submit">Submit</button>';
+        if ($keywords) {
+            echo '<a class="btn form-controls" href="/">Clear</a>';
+        }
         echo '</form>';
         echo '<section class="py-1">';
         echo "<h2>Number of product : {$productsNumber}</h2>";
@@ -56,13 +83,13 @@ if (isset($products)) {
         } else {
             $page = 1;
         }
-        for ($i = 0 + ($page - 1) * 20 ; $i < 20 + ($page - 1) * 20 && $i < $productsNumber ; $i++) {
+        foreach ($products as $product) {
             echo '<tr>';
-            echo "<td>{$products[$i]['id']}</td>";
-            echo "<td>{$products[$i]['name']}</td>";
-            echo "<td>{$products[$i]['price']}</td>";
-            echo "<td>{$products[$i]['address']}</td>";
-            echo "<td>{$products[$i]['city']}</td>";
+            echo "<td>{$product['id']}</td>";
+            echo "<td>{$product['name']}</td>";
+            echo "<td>{$product['price']}</td>";
+            echo "<td>{$product['address']}</td>";
+            echo "<td>{$product['city']}</td>";
             echo '</tr>';
         }
         echo '</tbody>';
@@ -70,11 +97,11 @@ if (isset($products)) {
         echo '<section id="pagination-section">';
         
         for ($i = 1 ; $i <= $productsNumber/20 ; $i++) {
-            echo "<a class=\"anchor-none-style\" href=\"/products-page?page={$i}\"><button class=\"btn btn-primary\">{$i}</button></a>";   
+            echo "<a class=\"anchor-none-style\" href=\"?page={$i}&keywords={$keywords}\"><button class=\"btn btn-primary\">{$i}</button></a>";   
         }
         
         if (floor($productsNumber/20) < $productsNumber/20) {
-            echo "<a class=\"anchor-none-style\" href=\"/products-page?page=" . ceil($productsNumber/20) . "\"><button class=\"btn btn-primary\">" . ceil($productsNumber/20) . "</button></a>";
+            echo "<a class=\"anchor-none-style\" href=\"?page=" . ceil($productsNumber/20) . "&keywords={$keywords}\"><button class=\"btn btn-primary\">" . ceil($productsNumber/20) . "</button></a>";
         }
         echo '</section>';
         echo '</article>';
@@ -87,7 +114,8 @@ if (isset($products)) {
         echo '<div class="container">';
         echo '<article>';
         echo '<h1>Products</h1>';
-        echo '<form method="post">';
+        echo '<form method="get">';
+        echo '<input type="hidden" name="page" value="1">';
         echo '<input class="form-controls" type="text" name="keywords" id="keywords" placeholder="Keywords that you search." value="' . ($keywords ?? '') . '">';
         echo '<button class="btn form-controls" type="submit">Submit</button>';
         echo '</form>';
@@ -97,7 +125,7 @@ if (isset($products)) {
         echo '</section>';
         echo '</main>';
         $pageContent = ob_get_clean();
-        unset($keywords, $_SESSION['keywords'], $_POST['keywords']);
+        
     }
 }
 

@@ -145,6 +145,19 @@ table thead tr th a:link {
     padding: .5rem 1rem;
 }
 
+a.form-controls {
+    display: block;
+    text-decoration: none;
+}
+
+a.form-controls:link, a.form-controls:visited {
+    color: #000000;
+    text-align: center;
+    background-color: #ffe;
+    border-radius: 10px;
+    border: 1px solid #555;
+}
+
 .py-1 {
     padding-top: 1rem;
     padding-bottom: 1rem;
