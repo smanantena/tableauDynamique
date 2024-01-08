@@ -1,7 +1,8 @@
 <?php
+require_once dirname(__DIR__, 3) . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
 
 use App\Database\Queries\AllProducts;
-use App\Database\Queries\AllProductsSortedByIdLimit;
+use App\Views\ProductsViews\ProductsViewsGenerator;
 
 try {
     $keywords = null;
@@ -67,11 +68,30 @@ if (isset($products)) {
         echo '</section>';
         echo '<table>';
         echo '<thead>';
-        if (strtolower($_GET['direction']) === 'desc') {
-            echo '<th scope="col"><a class="link-asc" href="/sort?sort-by=id&direction=asc">id</a></th><th scope="col"><a class="link-sort-muted link-asc" href="/sort?sort-by=name&direction=asc">name</a></th><th scope="col">price</th><th scope="col">address</th><th scope="col">city</th>';
-        } else {
-            echo '<th scope="col"><a class="link-desc" href="/sort?sort-by=id&direction=desc">id</a></th><th scope="col"><a class="link-sort-muted link-asc" href="/sort?sort-by=name&direction=asc">name</a></th><th scope="col">price</th><th scope="col">address</th><th scope="col">city</th>';
+        if (isset($_GET['dir'])) {
+
+            if (strtolower($_GET['dir']) === 'desc') {
+                $directionLink = 'asc';
+            } else {
+                $directionLink = 'desc';
+            }
         }
+        echo '<th scope="col">';
+        echo  ProductsViewsGenerator::filterLink($direction, 'id', $sort, $keywords);
+        echo '</th>';
+        echo '<th scope="col">';
+        echo  ProductsViewsGenerator::filterLink($direction, 'name', $sort, $keywords);
+        echo '</th>';
+        echo '<th scope="col">';
+        echo  ProductsViewsGenerator::filterLink($direction, 'price', $sort, $keywords);
+        echo '</th>';
+        echo '<th scope="col">';
+        echo ProductsViewsGenerator::filterLink($direction, 'address', $sort, $keywords);
+        echo '</th>';
+        echo '<th scope="col">';
+        echo ProductsViewsGenerator::filterLink($direction, 'city', $sort, $keywords);
+        echo '</th>';
+
         echo '</thead>';
         echo '<tbody>';
         if (isset($_GET['page'])) {
@@ -97,11 +117,11 @@ if (isset($products)) {
         echo '<section id="pagination-section">';
         
         for ($i = 1 ; $i <= $productsNumber/20 ; $i++) {
-            echo "<a class=\"anchor-none-style\" href=\"?page={$i}&keywords={$keywords}\"><button class=\"btn btn-primary\">{$i}</button></a>";   
+            echo "<a class=\"anchor-none-style\" href=\"?page={$i}". ( (isset($keywords)) ? ("&keywords={$keywords}") : null) . ((isset($sort)) ? ("&sort={$sort}") : null) . ((isset($direction)) ? ("&dir={$direction}") : null) ."\"><button class=\"btn btn-primary\">{$i}</button></a>";   
         }
         
         if (floor($productsNumber/20) < $productsNumber/20) {
-            echo "<a class=\"anchor-none-style\" href=\"?page=" . ceil($productsNumber/20) . "&keywords={$keywords}\"><button class=\"btn btn-primary\">" . ceil($productsNumber/20) . "</button></a>";
+            echo "<a class=\"anchor-none-style\" href=\"?page=" . ceil($productsNumber/20) . ( (isset($keywords)) ? ("&keywords={$keywords}") : null) . ((isset($sort)) ? ("&sort={$sort}") : null) . ((isset($direction)) ? ("&dir={$direction}") : null) . "\"><button class=\"btn btn-primary\">" . ceil($productsNumber/20) . "</button></a>";
         }
         echo '</section>';
         echo '</article>';
@@ -109,6 +129,7 @@ if (isset($products)) {
         echo '</main>';
         $pageContent = ob_get_clean();
     } else {
+        
         ob_start();
         echo "<main>";
         echo '<div class="container">';
@@ -123,10 +144,21 @@ if (isset($products)) {
         echo "<h2>None product have this keywords !</h2>";
         echo "<p><a href=\"/\">Please return to the homepage</a></p>";
         echo '</section>';
+        echo '</article>';
+        echo '</div>';
         echo '</main>';
         $pageContent = ob_get_clean();
-        
     }
+} else {
+    ob_start();
+    echo '<main>';
+    echo '<article>';
+    echo '<div class="container">';
+    echo '<h1>There are some problems !</h1>';
+    echo '<p><a href="/">Please wait. We solve them.</a></p>';
+    echo '</div>';
+    echo '</article>';
+    echo '</main>';
 }
 
 

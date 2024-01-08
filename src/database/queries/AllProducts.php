@@ -36,12 +36,22 @@ class AllProducts
      *
      * @return  array                    list of products
      */
-    public static function products (?int $limit, ?int $offset = 0, ?string $productsSearch = null , ?string $sort = 'id', ?string $direction = 'ASC') : ?array
+    public static function products (?int $limit, ?int $offset = 0, ?string $productsSearch = null , string $sort = 'id', string $direction = 'ASC') : ?array
     {
         try {
 
             $PDO = Database::connect();
-            $direction = strtoupper($direction);
+            $direction = strtoupper(htmlentities($direction));
+            $sort = htmlentities($sort);
+
+            if ( !in_array($direction, ["ASC", "DESC"])) {
+                $direction = 'ASC';
+            }
+
+            if ( !in_array($sort, ['id', 'name', 'price', 'address', 'city']) ) {
+                $sort = 'id';
+            }
+
             $query_str = "SELECT * FROM products ORDER BY {$sort} {$direction}";
                         
             if (!is_null($productsSearch)) {
